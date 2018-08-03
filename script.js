@@ -19,7 +19,6 @@ var movies = [
   }
 ];
 
-//klasa Movie
 
 var Movie = React.createClass({
   propTypes: {
@@ -28,9 +27,9 @@ var Movie = React.createClass({
   render: function() {
     return (
       React.createElement('li', {},
-        React.createElement(MovieTitle, {}, this.props.movie.title),
-        React.createElement(MovieDesc, {}, this.props.movie.desc),
-        React.createElement(MoviePhoto, {}, this.props.movie.photo)
+        React.createElement(MovieTitle, {title: this.props.movie.title}),
+        React.createElement(MovieDesc, {desc: this.props.movie.desc}),
+        React.createElement(MoviePhoto, {photo: this.props.movie.photo})
       )
       )
     },
@@ -45,7 +44,7 @@ var MoviePhoto = React.createClass({
   }
 });
 
-var MovieTitle = React.createElement({
+var MovieTitle = React.createClass({
   propTypes: {
     title: React.PropTypes.string.isRequired,
   },
@@ -54,7 +53,7 @@ var MovieTitle = React.createElement({
   }
 });
   
-var MovieDesc = React.createElement({
+var MovieDesc = React.createClass({
   propTypes: {
     desc: React.PropTypes.string.isRequired,
   },
@@ -65,7 +64,7 @@ var MovieDesc = React.createElement({
 
 
 var moviesElements = movies.map(function(movie) {
-  return React.createElement(Movie, {key: movie.id}
+  return React.createElement(Movie, {key: movie.id, movie: movie}
     );
 });
 
